@@ -6,19 +6,27 @@ var buttons = document.getElementsByClassName("myBtn")
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0]
+// Get the close button element inside the modal
+var closeBtn = document.getElementsByClassName("close")[0]
 
   // Get the selectedCards element inside the modal
   var selectedCardsContainer = document.getElementById("selectedCards");
+  var purchaseResult = document.getElementById("purchase-result");
+  // result 
+  var result = 0
 
   // Function to open the modal
-  function openModal(event) {
+    function openModal(event) {
     var card = event.currentTarget.parentElement
     var title = card.querySelector("h2").textContent
     var value = card.querySelector("span").textContent
+    result = result + parseInt(value)
+    console.log(result)
+    
     var imageSrc = card.querySelector("img").src
-    console.log(value)
     var selectedCard = document.createElement("div")
-    var total = document.createElement("span")
+    var resultCard = document.createElement('span')
+    resultCard.innerHTML = result
     selectedCard.className = "selectedCard"
     selectedCard.innerHTML = `
       <img src="${imageSrc}" alt="${title}">
@@ -27,14 +35,21 @@ var span = document.getElementsByClassName("close")[0]
     `
     // total.innerHTML = `<span>${}</span>`
     selectedCardsContainer.appendChild(selectedCard)
+    purchaseResult.appendChild(resultCard)
     modal.style.display = "block"
   }
 
   // Function to close the modal
   function closeModal() {
+    purchaseResult.innerHTML = ""
+    var result = document.getElementById('purchase-result')
+    if(result){
+      result.remove()
+    }
     modal.style.display = "none"
   }
-
+// closing event 
+closeBtn.addEventListener("click", closeModal)
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
@@ -46,29 +61,3 @@ window.onclick = function(event) {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", openModal)
   }
-
-
-  // Get the card elements
-  var wood1 = document.getElementById("wood1")
-  var wood2 = document.getElementById("wood2")
-  var wood3 = document.getElementById("wood3")
-
-  // Function to handle wood card click
-  function handleCardClick(imageSrc, productName, value) {
-    console.log("Image Source:", imageSrc)
-    console.log("Product Name:", productName)
-    console.log("Value:", value)
-  }
-
-  // Attach click event listeners to the cards
-  wood1.addEventListener("click", function() {
-    handleCardClick("lustres.jpg", "Lustre 1", 100)
-  })
-
-  wood2.addEventListener("click", function() {
-    handleCardClick("lustres2.jpg", "Lustre 2", 150)
-  })
-
-  wood3.addEventListener("click", function() {
-    handleCardClick("lustres3.jpg", "Lustre 3", 300)
-  })

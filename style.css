@@ -19,6 +19,9 @@ header {
     background-color: #f1f1f196;
     width: 99.08%;
 }
+#logoo{
+    width: 90px;
+}
 .logo h1{
     margin-left: 950px;
 }  
@@ -39,10 +42,6 @@ header {
     cursor: pointer;
     width: 150px;
     height: 40px;
-}
-.image2{
-    height: 354px;
-    width: 250px;
 }
 .a img{
     height: 500px;
